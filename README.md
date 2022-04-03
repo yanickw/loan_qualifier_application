@@ -1,18 +1,39 @@
-# Project Title
+# Loan Qualifier Application
 
-Just after the title, introduce your project by describing attractively what the project is about and what is the main problem that inspires you to create this project or what is the main contribution for the potential user of your project.
+*LOAN QUALIFIER APPLICATION* is a command line application to match applicants with qualifying loans. This application automate the time intensive handling of filtering loan data based on various set criterias from a list of institutions. The application automaticaly filters data from a given data file (.csv) comparing them to the user CLI input and allows to output the qualifying loans data to a csv file if desired.
 
----
-
-## Technologies
-
-Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
+It is currently being developed as part of a UCBerkeley Bootcamp.
 
 ---
 
-## Installation Guide
+## Requirements
 
-In this section, you should include detailed installation notes containing code blocks and screenshots.
+This application was writen in Python 3.9.7.
+
+**Operating System:**
+* Window 10 (or higher) using Gitbash.
+* MacOS 10.14 (or higher) using a terminal.
+* Linux Ubuntu 20.04 (or higher) using a terminal.
+
+**Will need to be installed:**
+
+*fire* 0.4.0
+```
+$ pip install fire
+```
+
+*questionary* 1.10.0
+
+```
+$ pip install questionary
+```
+
+---
+
+## Installation
+
+To install the application you will need to clone the GitHub repository.
+
 
 ---
 

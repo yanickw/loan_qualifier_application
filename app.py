@@ -112,18 +112,20 @@ def save_qualifying_loans(qualifying_loans):
         output_path (string): Path and filename for the file to be created. 
     """
     # Set the output file path and print progress status message.
-    save_output = questionary.confirm("Would you like to save the file?").ask()
-    # print(save_output)
-    if save_output == True:
-        output_path = questionary.path("Where do you want to save the file (.csv)?").ask()
-        output_path = Path(output_path)
-        if output_path.exists():
-            sys.exit(f"This file: {output_path} already exists.")
-        else:
-            print(f'--> Writing data to csv file "{output_path}"...')
-            save_csv(output_path, qualifying_loans)
+    if qualifying_loans == []:
+        sys.exit("Sorry, since no available loan where found, no file could be saved.")
     else:
-        sys.exit("Thank you, hope to see you again soon.")
+        save_output = questionary.confirm("Would you like to save the file?").ask()
+        if save_output == True:
+            output_path = questionary.path("Where do you want to save the file (.csv)?").ask()
+            output_path = Path(output_path)
+            if output_path.exists():
+                sys.exit(f"This file: {output_path} already exists.")
+            else:
+                print(f'--> Writing data to csv file "{output_path}"...')
+                save_csv(output_path, qualifying_loans)
+        else:
+            sys.exit("Thank you, hope to see you again soon.")
 
 
 def run():
