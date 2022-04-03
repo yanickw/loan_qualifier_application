@@ -28,18 +28,14 @@ def load_csv(csvpath):
         for row in csvreader:
             data.append(row)
     return data
-    
-# def save_csv():
-#     # Set the output header
-#     header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
-#     # Set the output file path and print progress status message.
-#     output_path = Path("inexpensive_loans.csv")
-#     print(f'--> Writing data to csv file "{output_path}"...')
-#     # Use the csv library and `csv.writer` to write the header row
-#     # and each row of `loan.values()` from the `inexpensive_loans` list.
-#     with open(output_path, 'w', newline='') as csvfile:
-#         csvwriter = csv.writer(csvfile, delimiter=",")
-#         csvwriter.writerow(header)
-#         for loan in inexpensive_loans:
-#             csvwriter.writerow(loan.values())
-#     return csvwriter
+
+def save_csv(output_path, qualifying_loans):
+    # Set the output header
+    header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
+    # Use the csv library and `csv.writer` to write the header row
+    # and each row of `loan.values()` from the `inexpensive_loans` list.
+    with open(output_path, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=",")
+        csvwriter.writerow(header)
+        for loan in qualifying_loans:
+            csvwriter.writerow(loan.values())
