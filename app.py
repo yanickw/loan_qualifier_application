@@ -33,7 +33,7 @@ def load_bank_data():
         The bank data from the data rate sheet CSV file.
     """
 
-    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):").ask()
+    csvpath = questionary.path("Enter a file path to a rate-sheet (.csv):").ask()
     csvpath = Path(csvpath)
     if not csvpath.exists():
         sys.exit(f"Oops! Can't find this path: {csvpath}")
@@ -109,18 +109,21 @@ def save_qualifying_loans(qualifying_loans):
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
+        output_path (string): Path and filename for the file to be created. 
     """
-    # Set the output header
-    #header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
     # Set the output file path and print progress status message.
-    output_path = questionary.text("Where do you want to save the file (.csv)?").ask()
-    output_path = Path(output_path)
-    print(f'--> Writing data to csv file "{output_path}"...')
-    if output_path.exists():
-        sys.exit(f"Oops! This file: {output_path} already exists")
+    save_output = questionary.confirm("Would you like to save the file?").ask()
+    # print(save_output)
+    if save_output == True:
+        output_path = questionary.path("Where do you want to save the file (.csv)?").ask()
+        output_path = Path(output_path)
+        if output_path.exists():
+            sys.exit(f"This file: {output_path} already exists.")
+        else:
+            print(f'--> Writing data to csv file "{output_path}"...')
+            save_csv(output_path, qualifying_loans)
     else:
-        save_csv(output_path, qualifying_loans)
-
+        sys.exit("Thank you, hope to see you again soon.")
 
 
 def run():
