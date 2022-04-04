@@ -17,9 +17,10 @@ def filter_loan_to_value(loan_to_value_ratio, bank_list):
     Returns:
         A list of qualifying bank loans.
     """
-
+    # Creates an empty list.
     loan_to_value_approval_list = []
-
+    # Loops through bank_list and appends loans who meet the Loan to 
+    # value ratio requirements to the loan_to_value_approval_list.
     for bank in bank_list:
         if loan_to_value_ratio <= float(bank[2]):
             loan_to_value_approval_list.append(bank)

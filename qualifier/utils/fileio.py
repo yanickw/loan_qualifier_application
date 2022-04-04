@@ -32,10 +32,11 @@ def load_csv(csvpath):
 def save_csv(output_path, qualifying_loans):
     # Set the output header
     header = ["Lender", "Max Loan Amount", "Max LTV", "Max DTI", "Min Credit Score", "Interest Rate"]
-    # Use the csv library and `csv.writer` to write the header row
-    # and each row of the for loop from the `qualifying_loans` results.
+    # Creates a new file to the "output_path" in write mode.
     with open(output_path, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=",")
+        # Use the `csv.writer` to write the header row
         csvwriter.writerow(header)
+        # Loop through each row of the filtered `qualifying_loans` and writes them in the ".csv" file.
         for items in qualifying_loans:
             csvwriter.writerow(items)

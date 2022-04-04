@@ -17,8 +17,10 @@ def filter_debt_to_income(monthly_debt_ratio, bank_list):
     Returns:
         A list of qualifying bank loans.
     """
-
+    # Creates an empty list.
     debit_to_income_approval_list = []
+    # Loops through bank_list and appends loans who meet the monthly debt ratio 
+    # requirements to the debit_to_income_approval_list.
     for bank in bank_list:
         if monthly_debt_ratio <= float(bank[3]):
             debit_to_income_approval_list.append(bank)

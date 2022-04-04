@@ -17,7 +17,10 @@ def filter_credit_score(credit_score, bank_list):
         A list of qualifying bank loans.
     """
 
+    # Creates an empty list.
     credit_score_approval_list = []
+    # Loops through bank_list and appends loans who meet the credit score 
+    # requirements to the credit_score_approval_list.
     for bank in bank_list:
         if credit_score >= int(bank[4]):
             credit_score_approval_list.append(bank)

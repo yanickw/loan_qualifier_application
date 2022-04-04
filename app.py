@@ -12,14 +12,17 @@ import fire
 import questionary
 from pathlib import Path
 
+# importing from /qualifier/utils/fileio.py
 from qualifier.utils.fileio import load_csv
 from qualifier.utils.fileio import save_csv
 
+# importing from /qualifier/utils/calculators.py
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
     calculate_loan_to_value_ratio,
 )
 
+# importing from /qualifier/filters/...
 from qualifier.filters.max_loan_size import filter_max_loan_size
 from qualifier.filters.credit_score import filter_credit_score
 from qualifier.filters.debt_to_income import filter_debt_to_income
@@ -85,20 +88,21 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
     """
 
-    # Calculate the monthly debt ratio
+    # Calculate the monthly debt ratio.
     monthly_debt_ratio = calculate_monthly_debt_ratio(debt, income)
     print(f"The monthly debt to income ratio is {monthly_debt_ratio:.02f}")
 
-    # Calculate loan to value ratio
+    # Calculate loan to value ratio.
     loan_to_value_ratio = calculate_loan_to_value_ratio(loan, home_value)
     print(f"The loan to value ratio is {loan_to_value_ratio:.02f}.")
 
-    # Run qualification filters
+    # Run qualification filters.
     bank_data_filtered = filter_max_loan_size(loan, bank_data)
     bank_data_filtered = filter_credit_score(credit_score, bank_data_filtered)
     bank_data_filtered = filter_debt_to_income(monthly_debt_ratio, bank_data_filtered)
     bank_data_filtered = filter_loan_to_value(loan_to_value_ratio, bank_data_filtered)
 
+    # Prints the number of qualifying loans filtered from the criteria.
     print(f"Found {len(bank_data_filtered)} qualifying loans")
 
     return bank_data_filtered
@@ -111,20 +115,25 @@ def save_qualifying_loans(qualifying_loans):
         qualifying_loans (list of lists): The qualifying bank loans.
         output_path (string): Path and filename for the file to be created. 
     """
-    # Set the output file path and print progress status message.
+    # Verifies if the list of filtered qualifying loans is empty, if true it exits with a message.
     if qualifying_loans == []:
         sys.exit("Sorry, since no available loan where found, no file could be saved.")
     else:
+        # Ask the user if the want to save the results to an output file.
         save_output = questionary.confirm("Would you like to save the file?").ask()
+        # If True it asks the user for the desired path and filename for the result to be saved.
         if save_output == True:
             output_path = questionary.path("Where do you want to save the file (.csv)?").ask()
             output_path = Path(output_path)
+            # Verifies if the file exists, if true it exits with a message.
             if output_path.exists():
                 sys.exit(f"This file: {output_path} already exists.")
+            # Prints a status message with information about the saved file and calls the save_csv function.
             else:
                 print(f'--> Writing data to csv file "{output_path}"...')
                 save_csv(output_path, qualifying_loans)
         else:
+            # If the user doesn't want to save the file it prints a message and exits.
             sys.exit("Thank you, hope to see you again soon.")
 
 
