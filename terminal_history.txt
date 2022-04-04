@@ -1,0 +1,36 @@
+    1  conda activate dev
+    2  cd Google\ Drive/09_Programming/FinTech_Workspace/
+    3  ls
+    4  cd ..
+    5  ls
+    6  cd FinTech_Workspace/
+    7  ls
+    8  cd loan_qualifier_application/
+    9  ls
+   10  python app.py 
+   11  python app.py 
+   12  python app.py 
+   13  pip --version
+   14  pip install
+   15  pip install --version
+   16  pip help install
+   17  pip list
+   18  python __version__
+   19  python -version
+   20  python -h
+   21  python --version
+   22  pip install questionary
+   23  git status
+   24  git add README.md 
+   25  git add app.py 
+   26  ls
+   27  git status
+   28  git commit -m "Added an extra condition in case the 'qualifying_loans' did not return any available loans given the criterias. Started documenting the README.md file" 
+   29  git push
+   30  python app.py 
+   31  ls
+   32  python app.py 
+   33  python app.py 
+   34  git add README.md 
+   35  git status
+   36  history 50 > terminal_history.txt
